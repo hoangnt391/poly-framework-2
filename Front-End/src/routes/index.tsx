@@ -12,6 +12,7 @@ import ProfilesPage from "../pages/client/profiles";
 import LayoutAdmin from "../layouts/admin";
 import Dashboard from "../pages/admin/Dashboard";
 import ManageUser from "../pages/admin/user";
+import ManageComment from "../pages/admin/comment";
 
 const Router = () => {
   return (
@@ -31,6 +32,9 @@ const Router = () => {
         </Route>
         <Route path="admin" element={<LayoutAdmin />}>
           <Route index element={<Dashboard />} />
+          <Route path='comments'>
+            <Route index element={<ManageComment />} />
+          </Route>
           {/* <Route index element={<Management />} />
                     <Route path='products'>
                         <Route index element={<ManagementProduct />} />
