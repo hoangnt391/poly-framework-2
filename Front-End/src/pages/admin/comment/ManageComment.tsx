@@ -10,7 +10,7 @@ const ManageComment = () => {
     GetAllcomment().then(({ data }) => setcoments(data))
   }, [])
 
-  const HandleRemoveComment = async (id: string) => {
+  const HandleRemoveComment = async (_id: string) => {
     try {
       Modal.confirm({
         title: 'Confirm',
@@ -26,10 +26,10 @@ const ManageComment = () => {
             if (loading) {
               loading();
             }
-            const response = await Removecomment(id);
+            const response = await Removecomment(_id);
             if (response) {
               message.success('xóa bình luận thành công!', 3);
-              const dataNew = coments.filter((data) => data._id !== id);
+              const dataNew = coments.filter((data) => data._id !== _id);
               setcoments(dataNew);
             }
           }, 2000);
@@ -84,6 +84,7 @@ const ManageComment = () => {
       key: item._id,
       Product_id: item.Product_id,
       User_id: item.User_id,
+      content:item.content,
       role: item.role,
       createdAt: item.createdAt,
     }
