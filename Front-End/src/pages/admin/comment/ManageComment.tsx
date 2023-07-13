@@ -10,7 +10,7 @@ const ManageComment = () => {
     GetAllcomment().then(({ data }) => setcoments(data))
   }, [])
 
-  const HandleRemoveUser = async (id: string) => {
+  const HandleRemoveComment = async (id: string) => {
     try {
       Modal.confirm({
         title: 'Confirm',
@@ -28,7 +28,7 @@ const ManageComment = () => {
             }
             const response = await Removecomment(id);
             if (response) {
-              message.success('xóa người dùng thành công!', 3);
+              message.success('xóa bình luận thành công!', 3);
               const dataNew = coments.filter((data) => data._id !== id);
               setcoments(dataNew);
             }
@@ -49,30 +49,30 @@ const ManageComment = () => {
       key: 'index'
     },
     {
-      title: 'name',
-      dataIndex: 'name',
-      key: 'name'
+      title: 'Sản phẩm',
+      dataIndex: 'Product_id',
+      key: 'Product_id'
     },
     {
-      title: 'email',
-      dataIndex: 'email',
-      key: 'email'
+      title: 'bình luận',
+      dataIndex: 'content',
+      key: 'content'
     },
     {
-      title: 'role',
-      dataIndex: 'role',
-      key: 'role'
+      title: 'Người dùng',
+      dataIndex: 'User_id',
+      key: 'User_id'
     },
     {
-      title: 'created At',
+      title: 'Thời gian',
       dataIndex: 'createdAt',
       key: 'createdAt'
     },
     {
-      title: 'action',
+      title: 'Hành Động',
       render: (item: Icomments) => <>
         {item.role === 'admin' ? <Button hidden>delete</Button> :
-          <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onClick={() => HandleRemoveUser(item.key)} ><DeleteOutlined /></button>
+          <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onClick={() => HandleRemoveComment(item._id)} ><DeleteOutlined /></button>
         }
       </>
     },
@@ -82,8 +82,8 @@ const ManageComment = () => {
     return {
       index: index,
       key: item._id,
-      name: item.name,
-      email: item.email,
+      Product_id: item.Product_id,
+      User_id: item.User_id,
       role: item.role,
       createdAt: item.createdAt,
     }
